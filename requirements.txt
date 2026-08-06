@@ -1,2 +1,1 @@
-python-dotenv
-requests
+# Este projeto utiliza apenas a biblioteca padrão do Python.

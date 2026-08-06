@@ -1,24 +1,35 @@
 import os
 import smtplib
-import json
-import requests
+from pathlib import Path
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from dotenv import load_dotenv
 
-# Carrega variáveis de ambiente de um arquivo .env se existir
-load_dotenv()
+
+def load_environment():
+    """Carrega variáveis de ambiente de um arquivo .env, se existir."""
+    env_file = Path(".env")
+    if not env_file.is_file():
+        return
+
+    for line in env_file.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+
+        key, value = line.split("=", 1)
+        key = key.strip()
+        if key:
+            os.environ.setdefault(key, value.strip().strip('"').strip("'"))
+
+
+load_environment()
 
 def get_recipients():
     """
     Obtém a lista de destinatários.
     Atualmente retorna uma lista fixa, mas está preparado para buscar via API.
     """
-    # Exemplo de como seria a busca via API no futuro:
-    # api_url = os.getenv("RECIPIENTS_API_URL")
-    # if api_url:
-    #     response = requests.get(api_url)
-    #     return response.json()["emails"]
+    # A integração com uma API de destinatários será adicionada futuramente.
     
     # Lista reduzida inicial para teste
     return ["exemplo1@email.com", "exemplo2@email.com"]
