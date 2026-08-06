@@ -1,5 +1,3 @@
-
-
 import os
 import smtplib
 import json
