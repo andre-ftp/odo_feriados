@@ -37,8 +37,11 @@ def send_email(recipients):
     smtp_password = os.getenv("SMTP_PASSWORD")
     
     if not smtp_server or not smtp_user or not smtp_password:
-        print("Erro: Credenciais SMTP não configuradas.")
-        print("Configure SMTP_SERVER, SMTP_USER e SMTP_PASSWORD como variáveis de ambiente.")
+        print("✗ Erro: Credenciais SMTP não configuradas.")
+        print(f"  SMTP_SERVER: {'✓ Configurado' if smtp_server else '✗ Falta'}")
+        print(f"  SMTP_USER: {'✓ Configurado' if smtp_user else '✗ Falta'}")
+        print(f"  SMTP_PASSWORD: {'✓ Configurado' if smtp_password else '✗ Falta'}")
+        print("Configure SMTP_SERVER, SMTP_USER e SMTP_PASSWORD como variáveis de ambiente no GitHub Secrets.")
         return False
     
     try:
@@ -56,14 +59,20 @@ def send_email(recipients):
     msg.attach(MIMEText(body, "plain"))
 
     try:
+        print(f"📧 Conectando a {smtp_server}:{smtp_port}...")
         with smtplib.SMTP(smtp_server, smtp_port) as server:
+            print("🔐 Iniciando TLS...")
             server.starttls()
+            print(f"🔑 Autenticando como {smtp_user}...")
             server.login(smtp_user, smtp_password)
+            print(f"📤 Enviando e-mail para: {', '.join(recipients)}")
             server.sendmail(smtp_user, recipients, msg.as_string())
         print(f"✓ E-mail enviado com sucesso para: {', '.join(recipients)}")
         return True
     except Exception as e:
         print(f"✗ Erro ao enviar e-mail: {e}")
+        import traceback
+        traceback.print_exc()
         return False
 
 def main():
