@@ -24,7 +24,7 @@ def get_recipients():
             print(f"Erro ao procurar destinatários na API: {e}")
     
     # Lista inicial para testes
-    return ["andre.rodrigues@ftpporto.com","joao.danho@odo.pt", "sergio.martins@odo.pt","rosa.sa@despachante.odo.pt"]
+    return ["andre.rodrigues@ftpporto.com"]
 
 def send_email(recipients):
     """
