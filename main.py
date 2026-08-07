@@ -60,13 +60,20 @@ def send_email(recipients):
 
     try:
         print(f"📧 Conectando a {smtp_server}:{smtp_port}...")
-        with smtplib.SMTP(smtp_server, smtp_port) as server:
-            print("🔐 Iniciando TLS...")
+        
+        if smtp_port == 465:
+            print("🔒 Usando SMTPS (porta 465)...")
+            server = smtplib.SMTP_SSL(smtp_server, smtp_port)
+        else:
+            print("🔐 Usando SMTP com STARTTLS (porta 587)...")
+            server = smtplib.SMTP(smtp_server, smtp_port)
             server.starttls()
-            print(f"🔑 Autenticando como {smtp_user}...")
-            server.login(smtp_user, smtp_password)
-            print(f"📤 Enviando e-mail para: {', '.join(recipients)}")
-            server.sendmail(smtp_user, recipients, msg.as_string())
+        
+        print(f"🔑 Autenticando como {smtp_user}...")
+        server.login(smtp_user, smtp_password)
+        print(f"📤 Enviando e-mail para: {', '.join(recipients)}")
+        server.sendmail(smtp_user, recipients, msg.as_string())
+        server.quit()
         print(f"✓ E-mail enviado com sucesso para: {', '.join(recipients)}")
         return True
     except Exception as e:
