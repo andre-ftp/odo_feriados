@@ -13,7 +13,7 @@ load_dotenv()
 
 def get_recipients():
     """
-    Obtém a lista de destinatários.
+    Obtém a lista de destinatários. No futuro será baseado na API ODO.
     Atualmente retorna uma lista fixa, preparada para API no futuro.
     """
     api_url = os.getenv("RECIPIENTS_API_URL")
@@ -26,7 +26,7 @@ def get_recipients():
             print(f"Erro ao procurar destinatários na API: {e}")
     
     # Lista inicial para testes
-    return ["andre.rodrigues@ftpporto.com"]
+    return ["andre.rodrigues@ftpporto.com", "cruz@dotlink.pt"]
 
 def load_holidays_json():
     """

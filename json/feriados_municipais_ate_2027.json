@@ -9493,6 +9493,37 @@
       "all_day": true
     },
     {
+          "id": "pt-municipal-teste-1-porto-98765432",
+          "municipality": "Teste 1",
+          "district_or_region": "Porto",
+          "name": "Feriado de Teste",
+          "scope": "municipal",
+          "recurrence": {
+            "type": "fixed_date",
+            "month_day": "08-11"
+          },
+          "dates": [
+            {
+              "year": 2025,
+              "date": "2025-08-11",
+              "weekday": "segunda-feira"
+            },
+            {
+              "year": 2026,
+              "date": "2026-08-11",
+              "weekday": "terça-feira"
+            },
+            {
+              "year": 2027,
+              "date": "2027-08-11",
+              "weekday": "quarta-feira"
+            }
+          ],
+          "source_page": 4,
+          "timezone": "Europe/Lisbon",
+          "all_day": true
+        },
+    {
       "id": "pt-municipal-teste-municipio-teste-abc12345",
       "municipality": "Teste Município",
       "district_or_region": "Teste Distrito",
