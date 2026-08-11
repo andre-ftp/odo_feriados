@@ -1,0 +1,385 @@
+{
+  "ano": 2027,
+  "contexto": "Ordem dos Despachantes Oficiais - Estâncias Aduaneiras",
+  "criterio": "Feriado associado à localidade/referência administrativa da estância, considerando a validação específica de regras móveis, histórico municipal e casos com possível divergência entre localização física, designação aduaneira e prática administrativa.",
+  "estancias": [
+    {
+      "codigo": "PT000005",
+      "estancia": "Aeroporto de Faro",
+      "tipo": "Delegação",
+      "referencia_territorial": "Faro",
+      "feriado_descricao": "7 setembro",
+      "revisao_especifica": false,
+      "feriado_2027": "2027-09-07"
+    },
+    {
+      "codigo": "PT000006",
+      "estancia": "Aeroporto de Beja",
+      "tipo": "Posto",
+      "referencia_territorial": "Beja",
+      "feriado_descricao": "6 maio",
+      "revisao_especifica": true,
+      "feriado_2027": "2027-05-06"
+    },
+    {
+      "codigo": "PT000010",
+      "estancia": "Aeroporto da Madeira",
+      "tipo": "Delegação",
+      "referencia_territorial": "Santa Cruz",
+      "feriado_descricao": "15 janeiro",
+      "revisao_especifica": true,
+      "feriado_2027": "2027-01-15"
+    },
+    {
+      "codigo": "PT000015",
+      "estancia": "Alfândega do Aeroporto de Lisboa",
+      "tipo": "Alfândega",
+      "referencia_territorial": "Lisboa",
+      "feriado_descricao": "13 junho",
+      "revisao_especifica": false,
+      "feriado_2027": "2027-06-13"
+    },
+    {
+      "codigo": "PT000018",
+      "estancia": "Aeródromo de Cascais",
+      "tipo": "Posto",
+      "referencia_territorial": "Cascais",
+      "feriado_descricao": "13 junho",
+      "revisao_especifica": false,
+      "feriado_2027": "2027-06-13"
+    },
+    {
+      "codigo": "PT000020",
+      "estancia": "Aeroporto do Porto",
+      "tipo": "Alfândega",
+      "referencia_territorial": "Maia",
+      "feriado_descricao": "12 julho",
+      "revisao_especifica": true,
+      "feriado_2027": "2027-07-12"
+    },
+    {
+      "codigo": "PT000025",
+      "estancia": "Porto Santo",
+      "tipo": "Delegação",
+      "referencia_territorial": "Porto Santo",
+      "feriado_descricao": "24 junho",
+      "revisao_especifica": false,
+      "feriado_2027": "2027-06-24"
+    },
+    {
+      "codigo": "PT000029",
+      "estancia": "Aeroporto de Ponta Delgada",
+      "tipo": "Posto",
+      "referencia_territorial": "Ponta Delgada",
+      "feriado_descricao": "3 maio",
+      "revisao_especifica": true,
+      "feriado_2027": "2027-05-03"
+    },
+    {
+      "codigo": "PT000030",
+      "estancia": "Aeroporto de Santa Maria",
+      "tipo": "Delegação",
+      "referencia_territorial": "Vila do Porto",
+      "feriado_descricao": "24 junho",
+      "revisao_especifica": false,
+      "feriado_2027": "2027-06-24"
+    },
+    {
+      "codigo": "PT000040",
+      "estancia": "Alfândega Marítima de Lisboa",
+      "tipo": "Alfândega",
+      "referencia_territorial": "Lisboa",
+      "feriado_descricao": "13 junho",
+      "revisao_especifica": false,
+      "feriado_2027": "2027-06-13"
+    },
+    {
+      "codigo": "PT000045",
+      "estancia": "Aeroporto Humberto Delgado",
+      "tipo": "Delegação",
+      "referencia_territorial": "Lisboa",
+      "feriado_descricao": "13 junho",
+      "revisao_especifica": false,
+      "feriado_2027": "2027-06-13"
+    },
+    {
+      "codigo": "PT000070",
+      "estancia": "Alfândega do Funchal",
+      "tipo": "Alfândega",
+      "referencia_territorial": "Funchal",
+      "feriado_descricao": "21 agosto",
+      "revisao_especifica": false,
+      "feriado_2027": "2027-08-21"
+    },
+    {
+      "codigo": "PT000080",
+      "estancia": "Alfândega de Ponta Delgada",
+      "tipo": "Alfândega",
+      "referencia_territorial": "Ponta Delgada",
+      "feriado_descricao": "3 maio",
+      "revisao_especifica": true,
+      "feriado_2027": "2027-05-03"
+    },
+    {
+      "codigo": "PT000088",
+      "estancia": "Alfândega de Alverca",
+      "tipo": "Alfândega",
+      "referencia_territorial": "Vila Franca de Xira",
+      "feriado_descricao": "6 maio",
+      "revisao_especifica": true,
+      "feriado_2027": "2027-05-06"
+    },
+    {
+      "codigo": "PT000095",
+      "estancia": "Angra do Heroísmo",
+      "tipo": "Delegação",
+      "referencia_territorial": "Angra do Heroísmo",
+      "feriado_descricao": "24 junho",
+      "revisao_especifica": false,
+      "feriado_2027": "2027-06-24"
+    },
+    {
+      "codigo": "PT000098",
+      "estancia": "Bobadela",
+      "tipo": "Posto",
+      "referencia_territorial": "Loures",
+      "feriado_descricao": "26 julho",
+      "revisao_especifica": false,
+      "feriado_2027": "2027-07-26"
+    },
+    {
+      "codigo": "PT000115",
+      "estancia": "Alfândega de Aveiro",
+      "tipo": "Alfândega",
+      "referencia_territorial": "Aveiro",
+      "feriado_descricao": "12 maio",
+      "revisao_especifica": false,
+      "feriado_2027": "2027-05-12"
+    },
+    {
+      "codigo": "PT000164",
+      "estancia": "Alfândega de Braga",
+      "tipo": "Alfândega",
+      "referencia_territorial": "Braga",
+      "feriado_descricao": "24 junho",
+      "revisao_especifica": false,
+      "feriado_2027": "2027-06-24"
+    },
+    {
+      "codigo": "PT000167",
+      "estancia": "Bragança",
+      "tipo": "Delegação",
+      "referencia_territorial": "Bragança",
+      "feriado_descricao": "22 agosto",
+      "revisao_especifica": false,
+      "feriado_2027": "2027-08-22"
+    },
+    {
+      "codigo": "PT000170",
+      "estancia": "Elvas",
+      "tipo": "Delegação",
+      "referencia_territorial": "Elvas",
+      "feriado_descricao": "14 janeiro",
+      "revisao_especifica": false,
+      "feriado_2027": "2027-01-14"
+    },
+    {
+      "codigo": "PT000227",
+      "estancia": "Covilhã",
+      "tipo": "Delegação",
+      "referencia_territorial": "Covilhã",
+      "feriado_descricao": "20 outubro",
+      "revisao_especifica": false,
+      "feriado_2027": "2027-10-20"
+    },
+    {
+      "codigo": "PT000236",
+      "estancia": "Encomendas Postais",
+      "tipo": "Delegação",
+      "referencia_territorial": "Lisboa",
+      "feriado_descricao": "13 junho",
+      "revisao_especifica": false,
+      "feriado_2027": "2027-06-13"
+    },
+    {
+      "codigo": "PT000265",
+      "estancia": "Alfândega de Faro",
+      "tipo": "Alfândega",
+      "referencia_territorial": "Faro",
+      "feriado_descricao": "7 setembro",
+      "revisao_especifica": false,
+      "feriado_2027": "2027-09-07"
+    },
+    {
+      "codigo": "PT000275",
+      "estancia": "Figueira da Foz",
+      "tipo": "Delegação",
+      "referencia_territorial": "Figueira da Foz",
+      "feriado_descricao": "24 junho",
+      "revisao_especifica": false,
+      "feriado_2027": "2027-06-24"
+    },
+    {
+      "codigo": "PT000284",
+      "estancia": "Alfândega do Freixieiro",
+      "tipo": "Alfândega",
+      "referencia_territorial": "Matosinhos",
+      "feriado_descricao": "18 maio",
+      "revisao_especifica": true,
+      "feriado_2027": "2027-05-18"
+    },
+    {
+      "codigo": "PT000295",
+      "estancia": "Horta",
+      "tipo": "Delegação",
+      "referencia_territorial": "Horta",
+      "feriado_descricao": "24 junho",
+      "revisao_especifica": false,
+      "feriado_2027": "2027-06-24"
+    },
+    {
+      "codigo": "PT000305",
+      "estancia": "Alfândega do Jardim do Tabaco",
+      "tipo": "Alfândega",
+      "referencia_territorial": "Lisboa",
+      "feriado_descricao": "13 junho",
+      "revisao_especifica": false,
+      "feriado_2027": "2027-06-13"
+    },
+    {
+      "codigo": "PT000340",
+      "estancia": "Alfândega de Leixões",
+      "tipo": "Alfândega",
+      "referencia_territorial": "Matosinhos",
+      "feriado_descricao": "18 maio",
+      "revisao_especifica": true,
+      "feriado_2027": "2027-05-18"
+    },
+    {
+      "codigo": "PT000455",
+      "estancia": "Alfândega de Peniche",
+      "tipo": "Alfândega",
+      "referencia_territorial": "Peniche",
+      "feriado_descricao": "2 agosto",
+      "revisao_especifica": true,
+      "feriado_2027": "2027-08-02"
+    },
+    {
+      "codigo": "PT000459",
+      "estancia": "Peso da Régua",
+      "tipo": "Delegação",
+      "referencia_territorial": "Peso da Régua",
+      "feriado_descricao": "16 agosto",
+      "revisao_especifica": false,
+      "feriado_2027": "2027-08-16"
+    },
+    {
+      "codigo": "PT000461",
+      "estancia": "Riachos",
+      "tipo": "Posto",
+      "referencia_territorial": "Torres Novas",
+      "feriado_descricao": "6 maio",
+      "revisao_especifica": true,
+      "feriado_2027": "2027-05-06"
+    },
+    {
+      "codigo": "PT000500",
+      "estancia": "Portimão",
+      "tipo": "Delegação",
+      "referencia_territorial": "Portimão",
+      "feriado_descricao": "11 dezembro",
+      "revisao_especifica": false,
+      "feriado_2027": "2027-12-11"
+    },
+    {
+      "codigo": "PT000510",
+      "estancia": "Praia da Graciosa",
+      "tipo": "Posto",
+      "referencia_territorial": "Santa Cruz da Graciosa",
+      "feriado_descricao": "9 agosto",
+      "revisao_especifica": true,
+      "feriado_2027": "2027-08-09"
+    },
+    {
+      "codigo": "PT000560",
+      "estancia": "Xabregas",
+      "tipo": "Posto",
+      "referencia_territorial": "Lisboa",
+      "feriado_descricao": "13 junho",
+      "revisao_especifica": false,
+      "feriado_2027": "2027-06-13"
+    },
+    {
+      "codigo": "PT000574",
+      "estancia": "Lajes das Flores",
+      "tipo": "Posto",
+      "referencia_territorial": "Lajes das Flores",
+      "feriado_descricao": "19 julho",
+      "revisao_especifica": true,
+      "feriado_2027": "2027-07-19"
+    },
+    {
+      "codigo": "PT000650",
+      "estancia": "São Roque do Pico",
+      "tipo": "Posto",
+      "referencia_territorial": "São Roque do Pico",
+      "feriado_descricao": "16 agosto",
+      "revisao_especifica": false,
+      "feriado_2027": "2027-08-16"
+    },
+    {
+      "codigo": "PT000665",
+      "estancia": "Setúbal",
+      "tipo": "Alfândega",
+      "referencia_territorial": "Setúbal",
+      "feriado_descricao": "15 setembro",
+      "revisao_especifica": false,
+      "feriado_2027": "2027-09-15"
+    },
+    {
+      "codigo": "PT000670",
+      "estancia": "Sines",
+      "tipo": "Delegação",
+      "referencia_territorial": "Sines",
+      "feriado_descricao": "24 novembro",
+      "revisao_especifica": false,
+      "feriado_2027": "2027-11-24"
+    },
+    {
+      "codigo": "PT000745",
+      "estancia": "Velas",
+      "tipo": "Posto",
+      "referencia_territorial": "Velas",
+      "feriado_descricao": "23 abril",
+      "revisao_especifica": false,
+      "feriado_2027": "2027-04-23"
+    },
+    {
+      "codigo": "PT000750",
+      "estancia": "Viana do Castelo",
+      "tipo": "Alfândega",
+      "referencia_territorial": "Viana do Castelo",
+      "feriado_descricao": "20 agosto",
+      "revisao_especifica": true,
+      "feriado_2027": "2027-08-20"
+    },
+    {
+      "codigo": "PT000830",
+      "estancia": "Vilar Formoso",
+      "tipo": "Delegação",
+      "referencia_territorial": "Almeida",
+      "feriado_descricao": "2 julho",
+      "revisao_especifica": false,
+      "feriado_2027": "2027-07-02"
+    },
+    {
+      "codigo": "PT000855",
+      "estancia": "Zona Franca da Madeira",
+      "tipo": "Delegação",
+      "referencia_territorial": "Machico",
+      "feriado_descricao": "8 maio",
+      "revisao_especifica": true,
+      "feriado_2027": "2027-05-08"
+    }
+  ]
+}

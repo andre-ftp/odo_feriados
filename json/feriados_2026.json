@@ -1,0 +1,401 @@
+{
+  "ano": 2026,
+  "contexto": "Ordem dos Despachantes Oficiais - Estâncias Aduaneiras",
+  "criterio": "Feriado associado à localidade/referência administrativa da estância, considerando validação específica nos casos com possível divergência entre localização física, designação aduaneira, prática administrativa e regras móveis. As datas móveis de 2026 foram recalculadas segundo a regra aplicável.",
+  "estancias": [
+    {
+      "codigo": "PT000005",
+      "estancia": "Aeroporto de Faro",
+      "tipo": "Delegação",
+      "referencia_territorial": "Faro",
+      "feriado_2026": "2026-09-07",
+      "feriado_descricao": "7 setembro",
+      "revisao_especifica": false
+    },
+    {
+      "codigo": "PT000006",
+      "estancia": "Aeroporto de Beja",
+      "tipo": "Posto",
+      "referencia_territorial": "Beja",
+      "feriado_2026": "2026-05-14",
+      "feriado_descricao": "14 maio",
+      "revisao_especifica": false
+    },
+    {
+      "codigo": "PT000010",
+      "estancia": "Aeroporto da Madeira",
+      "tipo": "Delegação",
+      "referencia_territorial": "Santa Cruz",
+      "feriado_2026": "2026-01-15",
+      "feriado_descricao": "15 janeiro",
+      "revisao_especifica": true
+    },
+    {
+      "codigo": "PT000015",
+      "estancia": "Alfândega do Aeroporto de Lisboa",
+      "tipo": "Alfândega",
+      "referencia_territorial": "Lisboa",
+      "feriado_2026": "2026-06-13",
+      "feriado_descricao": "13 junho",
+      "revisao_especifica": false
+    },
+    {
+      "codigo": "PT000018",
+      "estancia": "Aeródromo de Cascais",
+      "tipo": "Posto",
+      "referencia_territorial": "Cascais",
+      "feriado_2026": "2026-06-13",
+      "feriado_descricao": "13 junho",
+      "revisao_especifica": false
+    },
+    {
+      "codigo": "PT000020",
+      "estancia": "Aeroporto do Porto",
+      "tipo": "Alfândega",
+      "referencia_territorial": "Maia",
+      "feriado_2026": "2026-07-13",
+      "feriado_descricao": "13 julho",
+      "revisao_especifica": true
+    },
+    {
+      "codigo": "PT000025",
+      "estancia": "Porto Santo",
+      "tipo": "Delegação",
+      "referencia_territorial": "Porto Santo",
+      "feriado_2026": "2026-06-24",
+      "feriado_descricao": "24 junho",
+      "revisao_especifica": false
+    },
+    {
+      "codigo": "PT000029",
+      "estancia": "Aeroporto de Ponta Delgada",
+      "tipo": "Posto",
+      "referencia_territorial": "Ponta Delgada",
+      "feriado_2026": "2026-05-11",
+      "feriado_descricao": "11 maio",
+      "revisao_especifica": false
+    },
+    {
+      "codigo": "PT000030",
+      "estancia": "Aeroporto de Santa Maria",
+      "tipo": "Delegação",
+      "referencia_territorial": "Vila do Porto",
+      "feriado_2026": "2026-06-24",
+      "feriado_descricao": "24 junho",
+      "revisao_especifica": false
+    },
+    {
+      "codigo": "PT000040",
+      "estancia": "Alfândega Marítima de Lisboa",
+      "tipo": "Alfândega",
+      "referencia_territorial": "Lisboa",
+      "feriado_2026": "2026-06-13",
+      "feriado_descricao": "13 junho",
+      "revisao_especifica": false
+    },
+    {
+      "codigo": "PT000045",
+      "estancia": "Aeroporto Humberto Delgado",
+      "tipo": "Delegação",
+      "referencia_territorial": "Lisboa",
+      "feriado_2026": "2026-06-13",
+      "feriado_descricao": "13 junho",
+      "revisao_especifica": false
+    },
+    {
+      "codigo": "PT000070",
+      "estancia": "Alfândega do Funchal",
+      "tipo": "Alfândega",
+      "referencia_territorial": "Funchal",
+      "feriado_2026": "2026-08-21",
+      "feriado_descricao": "21 agosto",
+      "revisao_especifica": false
+    },
+    {
+      "codigo": "PT000080",
+      "estancia": "Alfândega de Ponta Delgada",
+      "tipo": "Alfândega",
+      "referencia_territorial": "Ponta Delgada",
+      "feriado_2026": "2026-05-11",
+      "feriado_descricao": "11 maio",
+      "revisao_especifica": false
+    },
+    {
+      "codigo": "PT000088",
+      "estancia": "Alfândega de Alverca",
+      "tipo": "Alfândega",
+      "referencia_territorial": "Vila Franca de Xira",
+      "feriado_2026": "2026-05-14",
+      "feriado_descricao": "14 maio",
+      "revisao_especifica": false
+    },
+    {
+      "codigo": "PT000095",
+      "estancia": "Angra do Heroísmo",
+      "tipo": "Delegação",
+      "referencia_territorial": "Angra do Heroísmo",
+      "feriado_2026": "2026-06-24",
+      "feriado_descricao": "24 junho",
+      "revisao_especifica": false
+    },
+    {
+      "codigo": "PT000098",
+      "estancia": "Bobadela",
+      "tipo": "Posto",
+      "referencia_territorial": "Loures",
+      "feriado_2026": "2026-07-26",
+      "feriado_descricao": "26 julho",
+      "revisao_especifica": false
+    },
+    {
+      "codigo": "PT000115",
+      "estancia": "Alfândega de Aveiro",
+      "tipo": "Alfândega",
+      "referencia_territorial": "Aveiro",
+      "feriado_2026": "2026-05-12",
+      "feriado_descricao": "12 maio",
+      "revisao_especifica": false
+    },
+    {
+      "codigo": "PT000164",
+      "estancia": "Alfândega de Braga",
+      "tipo": "Alfândega",
+      "referencia_territorial": "Braga",
+      "feriado_2026": "2026-06-24",
+      "feriado_descricao": "24 junho",
+      "revisao_especifica": false
+    },
+    {
+      "codigo": "PT000167",
+      "estancia": "Bragança",
+      "tipo": "Delegação",
+      "referencia_territorial": "Bragança",
+      "feriado_2026": "2026-08-22",
+      "feriado_descricao": "22 agosto",
+      "revisao_especifica": false
+    },
+    {
+      "codigo": "PT000170",
+      "estancia": "Elvas",
+      "tipo": "Delegação",
+      "referencia_territorial": "Elvas",
+      "feriado_2026": "2026-01-14",
+      "feriado_descricao": "14 janeiro",
+      "revisao_especifica": false
+    },
+    {
+      "codigo": "PT000227",
+      "estancia": "Covilhã",
+      "tipo": "Delegação",
+      "referencia_territorial": "Covilhã",
+      "feriado_2026": "2026-10-20",
+      "feriado_descricao": "20 outubro",
+      "revisao_especifica": false
+    },
+    {
+      "codigo": "PT000236",
+      "estancia": "Encomendas Postais",
+      "tipo": "Delegação",
+      "referencia_territorial": "Lisboa",
+      "feriado_2026": "2026-06-13",
+      "feriado_descricao": "13 junho",
+      "revisao_especifica": false
+    },
+    {
+      "codigo": "PT000265",
+      "estancia": "Alfândega de Faro",
+      "tipo": "Alfândega",
+      "referencia_territorial": "Faro",
+      "feriado_2026": "2026-09-07",
+      "feriado_descricao": "7 setembro",
+      "revisao_especifica": false
+    },
+    {
+      "codigo": "PT000275",
+      "estancia": "Figueira da Foz",
+      "tipo": "Delegação",
+      "referencia_territorial": "Figueira da Foz",
+      "feriado_2026": "2026-06-24",
+      "feriado_descricao": "24 junho",
+      "revisao_especifica": false
+    },
+    {
+      "codigo": "PT000284",
+      "estancia": "Alfândega do Freixieiro",
+      "tipo": "Alfândega",
+      "referencia_territorial": "Matosinhos",
+      "feriado_2026": "2026-05-26",
+      "feriado_descricao": "26 maio",
+      "revisao_especifica": false
+    },
+    {
+      "codigo": "PT000295",
+      "estancia": "Horta",
+      "tipo": "Delegação",
+      "referencia_territorial": "Horta",
+      "feriado_2026": "2026-06-24",
+      "feriado_descricao": "24 junho",
+      "revisao_especifica": false
+    },
+    {
+      "codigo": "PT000305",
+      "estancia": "Alfândega do Jardim do Tabaco",
+      "tipo": "Alfândega",
+      "referencia_territorial": "Lisboa",
+      "feriado_2026": "2026-06-13",
+      "feriado_descricao": "13 junho",
+      "revisao_especifica": false
+    },
+    {
+      "codigo": "PT000340",
+      "estancia": "Alfândega de Leixões",
+      "tipo": "Alfândega",
+      "referencia_territorial": "Matosinhos",
+      "feriado_2026": "2026-05-26",
+      "feriado_descricao": "26 maio",
+      "revisao_especifica": false
+    },
+    {
+      "codigo": "PT000455",
+      "estancia": "Alfândega de Peniche",
+      "tipo": "Alfândega",
+      "referencia_territorial": "Peniche",
+      "feriado_2026": "2026-08-03",
+      "feriado_descricao": "3 agosto",
+      "revisao_especifica": true
+    },
+    {
+      "codigo": "PT000459",
+      "estancia": "Peso da Régua",
+      "tipo": "Delegação",
+      "referencia_territorial": "Peso da Régua",
+      "feriado_2026": "2026-08-16",
+      "feriado_descricao": "16 agosto",
+      "revisao_especifica": false
+    },
+    {
+      "codigo": "PT000461",
+      "estancia": "Riachos",
+      "tipo": "Posto",
+      "referencia_territorial": "Torres Novas",
+      "feriado_2026": "2026-05-14",
+      "feriado_descricao": "14 maio",
+      "revisao_especifica": false
+    },
+    {
+      "codigo": "PT000500",
+      "estancia": "Portimão",
+      "tipo": "Delegação",
+      "referencia_territorial": "Portimão",
+      "feriado_2026": "2026-12-11",
+      "feriado_descricao": "11 dezembro",
+      "revisao_especifica": false
+    },
+    {
+      "codigo": "PT000510",
+      "estancia": "Praia da Graciosa",
+      "tipo": "Posto",
+      "referencia_territorial": "Santa Cruz da Graciosa",
+      "feriado_2026": "2026-08-10",
+      "feriado_descricao": "10 agosto",
+      "revisao_especifica": true
+    },
+    {
+      "codigo": "PT000560",
+      "estancia": "Xabregas",
+      "tipo": "Posto",
+      "referencia_territorial": "Lisboa",
+      "feriado_2026": "2026-06-13",
+      "feriado_descricao": "13 junho",
+      "revisao_especifica": false
+    },
+    {
+      "codigo": "PT000574",
+      "estancia": "Lajes das Flores",
+      "tipo": "Posto",
+      "referencia_territorial": "Lajes das Flores",
+      "feriado_2026": "2026-07-20",
+      "feriado_descricao": "20 julho",
+      "revisao_especifica": true
+    },
+    {
+      "codigo": "PT000650",
+      "estancia": "São Roque do Pico",
+      "tipo": "Posto",
+      "referencia_territorial": "São Roque do Pico",
+      "feriado_2026": "2026-08-16",
+      "feriado_descricao": "16 agosto",
+      "revisao_especifica": false
+    },
+    {
+      "codigo": "PT000665",
+      "estancia": "Setúbal",
+      "tipo": "Alfândega",
+      "referencia_territorial": "Setúbal",
+      "feriado_2026": "2026-09-15",
+      "feriado_descricao": "15 setembro",
+      "revisao_especifica": false
+    },
+    {
+      "codigo": "PT000670",
+      "estancia": "Sines",
+      "tipo": "Delegação",
+      "referencia_territorial": "Sines",
+      "feriado_2026": "2026-11-24",
+      "feriado_descricao": "24 novembro",
+      "revisao_especifica": false
+    },
+    {
+      "codigo": "PT000745",
+      "estancia": "Velas",
+      "tipo": "Posto",
+      "referencia_territorial": "Velas",
+      "feriado_2026": "2026-04-23",
+      "feriado_descricao": "23 abril",
+      "revisao_especifica": false
+    },
+    {
+      "codigo": "PT000750",
+      "estancia": "Viana do Castelo",
+      "tipo": "Alfândega",
+      "referencia_territorial": "Viana do Castelo",
+      "feriado_2026": "2026-08-20",
+      "feriado_descricao": "20 agosto",
+      "revisao_especifica": true
+    },
+    {
+      "codigo": "PT000830",
+      "estancia": "Vilar Formoso",
+      "tipo": "Delegação",
+      "referencia_territorial": "Almeida",
+      "feriado_2026": "2026-07-02",
+      "feriado_descricao": "2 julho",
+      "revisao_especifica": false
+    },
+    {
+      "codigo": "PT99999",
+      "estancia": "Zona Franca de Teste",
+      "tipo": "Delegação",
+      "referencia_territorial": "Teste",
+      "feriado_2026": "2026-08-12",
+      "feriado_descricao": "TESTE",
+      "revisao_especifica": true
+    },
+    {
+      "codigo": "PT000855",
+      "estancia": "Zona Franca da Madeira",
+      "tipo": "Delegação",
+      "referencia_territorial": "Machico",
+      "feriado_2026": "2026-05-08",
+      "feriado_descricao": "8 maio",
+      "revisao_especifica": true
+    }
+  ],
+  "versao": "2026-08-10 - revisão atualizada",
+  "notas_validacao": [
+    "PT000020 — Aeroporto do Porto: mantida a referência Maia; feriado municipal em 13 de julho de 2026.",
+    "PT000455 — Peniche: corrigido para 3 de agosto de 2026; regra: segunda-feira seguinte ao primeiro domingo de agosto.",
+    "PT000510 — Santa Cruz da Graciosa: 10 de agosto de 2026; regra administrativa atual: segunda-feira após o segundo domingo de agosto.",
+    "PT000574 — Lajes das Flores: 20 de julho de 2026; terceira segunda-feira de julho."
+  ]
+}

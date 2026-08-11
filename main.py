@@ -2,6 +2,8 @@ import os
 import smtplib
 import requests
 import json
+import traceback
+from typing import Any, Dict, List, Optional
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from datetime import datetime, timedelta
@@ -11,7 +13,41 @@ from dotenv import load_dotenv
 # No GitHub Actions, as variáveis vêm de secrets
 load_dotenv()
 
-def get_recipients():
+def load_holidays_json() -> Optional[Dict[str, Any]]:
+    """
+    Carrega dados de feriados do ficheiro JSON.
+    Tenta primeiro feriados_2026.json, depois feriados_2027.json.
+    """
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    json_dir = os.path.join(script_dir, "json")
+    current_year = datetime.now().year
+    
+    # Tentar carregar JSON do ano atual
+    for year in [current_year, current_year + 1]:
+        json_file = os.path.join(json_dir, f"feriados_{year}.json")
+        if os.path.exists(json_file):
+            try:
+                with open(json_file, "r", encoding="utf-8") as f:
+                    return json.load(f)
+            except Exception as e:
+                print(f"Erro ao carregar {json_file}: {e}")
+    
+    print(f"Ficheiro de feriados não encontrado em {json_dir}")
+    return None
+
+def format_customs_unit(holiday: Dict[str, Any]) -> str:
+    """
+    Formata o nome da unidade aduaneira com base no tipo.
+    Exemplo: "Aeroporto de Faro" com tipo "Delegação" → "Delegação do Aeroporto de Faro"
+    """
+    estancia = holiday.get("estancia", "")
+    tipo = holiday.get("tipo", "")
+    
+    if tipo and tipo.lower() not in ["", "padrão"]:
+        return f"{tipo} do {estancia}"
+    return estancia
+
+def get_recipients() -> List[str]:
     """
     Obtém a lista de destinatários. No futuro será baseado na API ODO.
     Atualmente retorna uma lista fixa, preparada para API no futuro.
@@ -28,58 +64,39 @@ def get_recipients():
     # Lista inicial para testes
     return ["andre.rodrigues@ftpporto.com", "cruz@dotlink.pt"]
 
-def load_holidays_json():
+def get_holidays_for_tomorrow() -> List[Dict[str, Any]]:
     """
-    Carrega os feriados do ficheiro JSON.
-    """
-    json_path = "json/feriados_municipais_ate_2027.json"
-    try:
-        with open(json_path, "r", encoding="utf-8") as f:
-            return json.load(f)
-    except Exception as e:
-        print(f"Erro ao carregar JSON de feriados: {e}")
-        return None
-
-def get_holidays_for_tomorrow():
-    """
-    Retorna lista de feriados para amanhã.
-    Cada item contém: municipality, district_or_region, name, date, weekday
+    Retorna lista de estâncias com feriado para amanhã.
+    Cada item contém: codigo, estancia, tipo, referencia_territorial, date, name.
     """
     holidays_data = load_holidays_json()
     if not holidays_data:
         return []
-    
+
     tomorrow = datetime.now() + timedelta(days=1)
     tomorrow_date_str = tomorrow.strftime("%Y-%m-%d")
-    tomorrow_weekday = tomorrow.strftime("%A")
-    
-    # Mapeamento português de dias da semana
-    weekday_pt = {
-        "Monday": "segunda-feira",
-        "Tuesday": "terça-feira",
-        "Wednesday": "quarta-feira",
-        "Thursday": "quinta-feira",
-        "Friday": "sexta-feira",
-        "Saturday": "sábado",
-        "Sunday": "domingo"
-    }
-    
-    holidays_tomorrow = []
-    for holiday in holidays_data.get("holidays", []):
-        for date_entry in holiday.get("dates", []):
-            if date_entry["date"] == tomorrow_date_str:
+    current_year = datetime.now().year
+    feriado_key = f"feriado_{current_year}"
+
+    holidays_tomorrow: List[Dict[str, Any]] = []
+    estancias = holidays_data.get("estancias", [])
+    if isinstance(estancias, list):
+        for estancia in estancias:
+            if estancia.get(feriado_key) == tomorrow_date_str:
                 holidays_tomorrow.append({
-                    "municipality": holiday["municipality"],
-                    "district_or_region": holiday["district_or_region"],
-                    "name": holiday["name"],
-                    "date": date_entry["date"],
-                    "weekday": date_entry["weekday"]
+                    "codigo": estancia.get("codigo"),
+                    "estancia": estancia.get("estancia"),
+                    "tipo": estancia.get("tipo"),
+                    "referencia_territorial": estancia.get("referencia_territorial"),
+                    "date": estancia.get(feriado_key),
+                    "name": estancia.get("feriado_descricao"),
+                    "revisao_especifica": estancia.get("revisao_especifica", False)
                 })
-    
+
     return holidays_tomorrow
 
 
-def send_email(recipients, holidays):
+def send_email(recipients: List[str], holidays: List[Dict[str, Any]]) -> bool:
     """
     Envia o e-mail para a lista de destinatários com detalhes dos feriados.
     As credenciais SMTP vêm de variáveis de ambiente (secrets no GitHub Actions).
@@ -88,7 +105,7 @@ def send_email(recipients, holidays):
     smtp_port_str = os.getenv("SMTP_PORT", "587")
     smtp_user = os.getenv("SMTP_USER")
     smtp_password = os.getenv("SMTP_PASSWORD")
-    
+
     if not smtp_server or not smtp_user or not smtp_password:
         print("✗ Erro: Credenciais SMTP não configuradas.")
         print(f"  SMTP_SERVER: {'✓ Configurado' if smtp_server else '✗ Falta'}")
@@ -96,7 +113,7 @@ def send_email(recipients, holidays):
         print(f"  SMTP_PASSWORD: {'✓ Configurado' if smtp_password else '✗ Falta'}")
         print("Configure SMTP_SERVER, SMTP_USER e SMTP_PASSWORD como variáveis de ambiente no GitHub Secrets.")
         return False
-    
+
     try:
         smtp_port = int(smtp_port_str)
     except ValueError:
@@ -118,35 +135,41 @@ def send_email(recipients, holidays):
         "October", "Outubro").replace(
         "November", "Novembro").replace(
         "December", "Dezembro")
-    
-    body = f"""Olá,
 
-Aviso de Feriados Municipais - {date_formatted}
+    # Obter o nome do feriado para o assunto
+    holiday_name = holidays[0]["name"] if holidays else "Feriado Municipal"
 
-No dia de amanhã ({date_formatted}), existem os seguintes feriados municipais:
+    body = f"""Informamos os(as) Colegas que na próxima {tomorrow.strftime('%A').lower()}, {date_formatted}, realiza-se o Feriado Municipal referido em título, afetando os seguintes serviços:
 
 """
-    
+
+    # Adicionar informações dos feriados
     for holiday in holidays:
-        body += f"""• {holiday['name']}
-  Localidade: {holiday['municipality']}, {holiday['district_or_region']}
-  Data: {holiday['date']} ({holiday['weekday']})
+        unit_name = format_customs_unit(holiday)
+        body += f"""- {unit_name} ({holiday['codigo']}) — {holiday['referencia_territorial']}
 
 """
-    
-    body += """---
-Este é um e-mail automático enviado pelo sistema Odo Feriados.
-"""
-    
+
+    body += """Apresentamos os nossos melhores cumprimentos.
+
+O CONSELHO DIRETIVO"""
+
     msg = MIMEMultipart()
     msg["From"] = smtp_user
     msg["To"] = ", ".join(recipients)
-    msg["Subject"] = f"🎉 Feriados Municipais Amanhã ({tomorrow.strftime('%d/%m/%Y')})"
+
+    # Definir o assunto com base no nome do feriado e localidade
+    if holidays:
+        location = holidays[0]["referencia_territorial"]
+        msg["Subject"] = f"Aviso de Feriado Municipal - {holiday_name} de {location}"
+    else:
+        msg["Subject"] = "Aviso de Feriado Municipal"
+
     msg.attach(MIMEText(body, "plain", "utf-8"))
 
     try:
         print(f"📧 Conectando a {smtp_server}:{smtp_port}...")
-        
+
         if smtp_port == 465:
             print("🔒 Usando SMTPS (porta 465)...")
             server = smtplib.SMTP_SSL(smtp_server, smtp_port)
@@ -154,7 +177,7 @@ Este é um e-mail automático enviado pelo sistema Odo Feriados.
             print("🔐 Usando SMTP com STARTTLS (porta 587)...")
             server = smtplib.SMTP(smtp_server, smtp_port)
             server.starttls()
-        
+
         print(f"🔑 Autenticando como {smtp_user}...")
         server.login(smtp_user, smtp_password)
         print(f"📤 Enviando e-mail para: {', '.join(recipients)}")
@@ -164,22 +187,21 @@ Este é um e-mail automático enviado pelo sistema Odo Feriados.
         return True
     except Exception as e:
         print(f"✗ Erro ao enviar e-mail: {e}")
-        import traceback
         traceback.print_exc()
         return False
 
-def main():
+def main() -> int:
     print("🔍 Verificando feriados para amanhã...")
     holidays = get_holidays_for_tomorrow()
-    
+
     if not holidays:
         print("✓ Nenhum feriado municipal amanhã. Email não será enviado.")
         return 0
-    
+
     print(f"✓ {len(holidays)} feriado(s) encontrado(s) para amanhã:")
     for holiday in holidays:
-        print(f"  • {holiday['name']} em {holiday['municipality']}")
-    
+        print(f"  • {holiday['name']} em {holiday['estancia']} ({holiday['referencia_territorial']})")
+
     destinatarios = get_recipients()
     if destinatarios:
         success = send_email(destinatarios, holidays)
@@ -187,6 +209,7 @@ def main():
     else:
         print("Nenhum destinatário encontrado.")
         return 1
+
 
 if __name__ == "__main__":
     exit(main())
