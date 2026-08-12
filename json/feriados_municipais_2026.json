@@ -382,6 +382,15 @@
       "revisao_especifica": true
     },
     {
+      "codigo": "PT777777",
+      "estancia": "Zona Franca de VM",
+      "tipo": "Delegação",
+      "referencia_territorial": "Alca",
+      "feriado_2026": "2026-08-13",
+      "feriado_descricao": "Feriado Municipal de Alca",
+      "revisao_especifica": true
+    },
+    {
       "codigo": "PT000855",
       "estancia": "Zona Franca da Madeira",
       "tipo": "Delegação",
