@@ -108,10 +108,35 @@ def send_email(recipients: List[str], holidays: List[Dict[str, Any]]) -> bool:
         return False
 
     tomorrow = datetime.now() + timedelta(days=1)
-    date_formatted = tomorrow.strftime("%d/%m/%Y")
+    weekdays = (
+        "segunda-feira",
+        "terça-feira",
+        "quarta-feira",
+        "quinta-feira",
+        "sexta-feira",
+        "sábado",
+        "domingo",
+    )
+    months = (
+        "janeiro",
+        "fevereiro",
+        "março",
+        "abril",
+        "maio",
+        "junho",
+        "julho",
+        "agosto",
+        "setembro",
+        "outubro",
+        "novembro",
+        "dezembro",
+    )
+    weekday = weekdays[tomorrow.weekday()]
+    date_formatted = f"{tomorrow.day} de {months[tomorrow.month - 1]} de {tomorrow.year}"
     holiday_name = holidays[0].get("name") or "Feriado Municipal"
     body = (
-        f"Informamos os(as) Colegas que amanhã, {date_formatted}, realiza-se "
+        f"Informamos os(as) Colegas que na próxima {weekday}, {date_formatted}, "
+        "realiza-se "
         "o Feriado Municipal referido em título, afetando os seguintes serviços:\n\n"
     )
     for holiday in holidays:
