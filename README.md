@@ -62,6 +62,9 @@ git secrets --scan
 ```
 odo_feriados/
 ├── main.py                 # Script principal
+├── json/
+│   ├── feriados_municipais_2026.json
+│   └── feriados_municipais_2027.json
 ├── requirements.txt        # Dependências Python
 ├── .env.example           # Template de configuração
 ├── .github/

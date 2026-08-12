@@ -9,7 +9,7 @@
       "tipo": "Delegação",
       "referencia_territorial": "Faro",
       "feriado_2026": "2026-09-07",
-      "feriado_descricao": "7 setembro",
+      "feriado_descricao": "Feriado Municipal de Faro",
       "revisao_especifica": false
     },
     {
@@ -18,7 +18,7 @@
       "tipo": "Posto",
       "referencia_territorial": "Beja",
       "feriado_2026": "2026-05-14",
-      "feriado_descricao": "14 maio",
+      "feriado_descricao": "Feriado Municipal de Beja",
       "revisao_especifica": false
     },
     {
@@ -27,7 +27,7 @@
       "tipo": "Delegação",
       "referencia_territorial": "Santa Cruz",
       "feriado_2026": "2026-01-15",
-      "feriado_descricao": "15 janeiro",
+      "feriado_descricao": "Feriado Municipal de Santa Cruz",
       "revisao_especifica": true
     },
     {
@@ -36,7 +36,7 @@
       "tipo": "Alfândega",
       "referencia_territorial": "Lisboa",
       "feriado_2026": "2026-06-13",
-      "feriado_descricao": "13 junho",
+      "feriado_descricao": "Feriado Municipal de Lisboa",
       "revisao_especifica": false
     },
     {
@@ -45,7 +45,7 @@
       "tipo": "Posto",
       "referencia_territorial": "Cascais",
       "feriado_2026": "2026-06-13",
-      "feriado_descricao": "13 junho",
+      "feriado_descricao": "Feriado Municipal de Cascais",
       "revisao_especifica": false
     },
     {
@@ -54,7 +54,7 @@
       "tipo": "Alfândega",
       "referencia_territorial": "Maia",
       "feriado_2026": "2026-07-13",
-      "feriado_descricao": "13 julho",
+      "feriado_descricao": "Feriado Municipal da Maia",
       "revisao_especifica": true
     },
     {
@@ -63,7 +63,7 @@
       "tipo": "Delegação",
       "referencia_territorial": "Porto Santo",
       "feriado_2026": "2026-06-24",
-      "feriado_descricao": "24 junho",
+      "feriado_descricao": "Feriado Municipal do Porto Santo",
       "revisao_especifica": false
     },
     {
@@ -72,7 +72,7 @@
       "tipo": "Posto",
       "referencia_territorial": "Ponta Delgada",
       "feriado_2026": "2026-05-11",
-      "feriado_descricao": "11 maio",
+      "feriado_descricao": "Feriado Municipal de Ponta Delgada",
       "revisao_especifica": false
     },
     {
@@ -81,7 +81,7 @@
       "tipo": "Delegação",
       "referencia_territorial": "Vila do Porto",
       "feriado_2026": "2026-06-24",
-      "feriado_descricao": "24 junho",
+      "feriado_descricao": "Feriado Municipal de Vila do Porto",
       "revisao_especifica": false
     },
     {
@@ -90,7 +90,7 @@
       "tipo": "Alfândega",
       "referencia_territorial": "Lisboa",
       "feriado_2026": "2026-06-13",
-      "feriado_descricao": "13 junho",
+      "feriado_descricao": "Feriado Municipal de Lisboa",
       "revisao_especifica": false
     },
     {
@@ -99,7 +99,7 @@
       "tipo": "Delegação",
       "referencia_territorial": "Lisboa",
       "feriado_2026": "2026-06-13",
-      "feriado_descricao": "13 junho",
+      "feriado_descricao": "Feriado Municipal de Lisboa",
       "revisao_especifica": false
     },
     {
@@ -108,7 +108,7 @@
       "tipo": "Alfândega",
       "referencia_territorial": "Funchal",
       "feriado_2026": "2026-08-21",
-      "feriado_descricao": "21 agosto",
+      "feriado_descricao": "Feriado Municipal do Funchal",
       "revisao_especifica": false
     },
     {
@@ -117,7 +117,7 @@
       "tipo": "Alfândega",
       "referencia_territorial": "Ponta Delgada",
       "feriado_2026": "2026-05-11",
-      "feriado_descricao": "11 maio",
+      "feriado_descricao": "Feriado Municipal de Ponta Delgada",
       "revisao_especifica": false
     },
     {
@@ -126,7 +126,7 @@
       "tipo": "Alfândega",
       "referencia_territorial": "Vila Franca de Xira",
       "feriado_2026": "2026-05-14",
-      "feriado_descricao": "14 maio",
+      "feriado_descricao": "Feriado Municipal de Vila Franca de Xira",
       "revisao_especifica": false
     },
     {
@@ -135,7 +135,7 @@
       "tipo": "Delegação",
       "referencia_territorial": "Angra do Heroísmo",
       "feriado_2026": "2026-06-24",
-      "feriado_descricao": "24 junho",
+      "feriado_descricao": "Feriado Municipal de Angra do Heroísmo",
       "revisao_especifica": false
     },
     {
@@ -144,7 +144,7 @@
       "tipo": "Posto",
       "referencia_territorial": "Loures",
       "feriado_2026": "2026-07-26",
-      "feriado_descricao": "26 julho",
+      "feriado_descricao": "Feriado Municipal de Loures",
       "revisao_especifica": false
     },
     {
@@ -153,7 +153,7 @@
       "tipo": "Alfândega",
       "referencia_territorial": "Aveiro",
       "feriado_2026": "2026-05-12",
-      "feriado_descricao": "12 maio",
+      "feriado_descricao": "Feriado Municipal de Aveiro",
       "revisao_especifica": false
     },
     {
@@ -162,7 +162,7 @@
       "tipo": "Alfândega",
       "referencia_territorial": "Braga",
       "feriado_2026": "2026-06-24",
-      "feriado_descricao": "24 junho",
+      "feriado_descricao": "Feriado Municipal de Braga",
       "revisao_especifica": false
     },
     {
@@ -171,7 +171,7 @@
       "tipo": "Delegação",
       "referencia_territorial": "Bragança",
       "feriado_2026": "2026-08-22",
-      "feriado_descricao": "22 agosto",
+      "feriado_descricao": "Feriado Municipal de Bragança",
       "revisao_especifica": false
     },
     {
@@ -180,7 +180,7 @@
       "tipo": "Delegação",
       "referencia_territorial": "Elvas",
       "feriado_2026": "2026-01-14",
-      "feriado_descricao": "14 janeiro",
+      "feriado_descricao": "Feriado Municipal de Elvas",
       "revisao_especifica": false
     },
     {
@@ -189,7 +189,7 @@
       "tipo": "Delegação",
       "referencia_territorial": "Covilhã",
       "feriado_2026": "2026-10-20",
-      "feriado_descricao": "20 outubro",
+      "feriado_descricao": "Feriado Municipal da Covilhã",
       "revisao_especifica": false
     },
     {
@@ -198,7 +198,7 @@
       "tipo": "Delegação",
       "referencia_territorial": "Lisboa",
       "feriado_2026": "2026-06-13",
-      "feriado_descricao": "13 junho",
+      "feriado_descricao": "Feriado Municipal de Lisboa",
       "revisao_especifica": false
     },
     {
@@ -207,7 +207,7 @@
       "tipo": "Alfândega",
       "referencia_territorial": "Faro",
       "feriado_2026": "2026-09-07",
-      "feriado_descricao": "7 setembro",
+      "feriado_descricao": "Feriado Municipal de Faro",
       "revisao_especifica": false
     },
     {
@@ -216,7 +216,7 @@
       "tipo": "Delegação",
       "referencia_territorial": "Figueira da Foz",
       "feriado_2026": "2026-06-24",
-      "feriado_descricao": "24 junho",
+      "feriado_descricao": "Feriado Municipal da Figueira da Foz",
       "revisao_especifica": false
     },
     {
@@ -225,7 +225,7 @@
       "tipo": "Alfândega",
       "referencia_territorial": "Matosinhos",
       "feriado_2026": "2026-05-26",
-      "feriado_descricao": "26 maio",
+      "feriado_descricao": "Feriado Municipal de Matosinhos",
       "revisao_especifica": false
     },
     {
@@ -234,7 +234,7 @@
       "tipo": "Delegação",
       "referencia_territorial": "Horta",
       "feriado_2026": "2026-06-24",
-      "feriado_descricao": "24 junho",
+      "feriado_descricao": "Feriado Municipal da Horta",
       "revisao_especifica": false
     },
     {
@@ -243,7 +243,7 @@
       "tipo": "Alfândega",
       "referencia_territorial": "Lisboa",
       "feriado_2026": "2026-06-13",
-      "feriado_descricao": "13 junho",
+      "feriado_descricao": "Feriado Municipal de Lisboa",
       "revisao_especifica": false
     },
     {
@@ -252,7 +252,7 @@
       "tipo": "Alfândega",
       "referencia_territorial": "Matosinhos",
       "feriado_2026": "2026-05-26",
-      "feriado_descricao": "26 maio",
+      "feriado_descricao": "Feriado Municipal de Matosinhos",
       "revisao_especifica": false
     },
     {
@@ -261,7 +261,7 @@
       "tipo": "Alfândega",
       "referencia_territorial": "Peniche",
       "feriado_2026": "2026-08-03",
-      "feriado_descricao": "3 agosto",
+      "feriado_descricao": "Feriado Municipal de Peniche",
       "revisao_especifica": true
     },
     {
@@ -270,7 +270,7 @@
       "tipo": "Delegação",
       "referencia_territorial": "Peso da Régua",
       "feriado_2026": "2026-08-16",
-      "feriado_descricao": "16 agosto",
+      "feriado_descricao": "Feriado Municipal de Peso da Régua",
       "revisao_especifica": false
     },
     {
@@ -279,7 +279,7 @@
       "tipo": "Posto",
       "referencia_territorial": "Torres Novas",
       "feriado_2026": "2026-05-14",
-      "feriado_descricao": "14 maio",
+      "feriado_descricao": "Feriado Municipal de Torres Novas",
       "revisao_especifica": false
     },
     {
@@ -288,7 +288,7 @@
       "tipo": "Delegação",
       "referencia_territorial": "Portimão",
       "feriado_2026": "2026-12-11",
-      "feriado_descricao": "11 dezembro",
+      "feriado_descricao": "Feriado Municipal de Portimão",
       "revisao_especifica": false
     },
     {
@@ -297,7 +297,7 @@
       "tipo": "Posto",
       "referencia_territorial": "Santa Cruz da Graciosa",
       "feriado_2026": "2026-08-10",
-      "feriado_descricao": "10 agosto",
+      "feriado_descricao": "Feriado Municipal de Santa Cruz da Graciosa",
       "revisao_especifica": true
     },
     {
@@ -306,7 +306,7 @@
       "tipo": "Posto",
       "referencia_territorial": "Lisboa",
       "feriado_2026": "2026-06-13",
-      "feriado_descricao": "13 junho",
+      "feriado_descricao": "Feriado Municipal de Lisboa",
       "revisao_especifica": false
     },
     {
@@ -315,7 +315,7 @@
       "tipo": "Posto",
       "referencia_territorial": "Lajes das Flores",
       "feriado_2026": "2026-07-20",
-      "feriado_descricao": "20 julho",
+      "feriado_descricao": "Feriado Municipal das Lajes das Flores",
       "revisao_especifica": true
     },
     {
@@ -324,7 +324,7 @@
       "tipo": "Posto",
       "referencia_territorial": "São Roque do Pico",
       "feriado_2026": "2026-08-16",
-      "feriado_descricao": "16 agosto",
+      "feriado_descricao": "Feriado Municipal de São Roque do Pico",
       "revisao_especifica": false
     },
     {
@@ -333,7 +333,7 @@
       "tipo": "Alfândega",
       "referencia_territorial": "Setúbal",
       "feriado_2026": "2026-09-15",
-      "feriado_descricao": "15 setembro",
+      "feriado_descricao": "Feriado Municipal de Setúbal",
       "revisao_especifica": false
     },
     {
@@ -342,7 +342,7 @@
       "tipo": "Delegação",
       "referencia_territorial": "Sines",
       "feriado_2026": "2026-11-24",
-      "feriado_descricao": "24 novembro",
+      "feriado_descricao": "Feriado Municipal de Sines",
       "revisao_especifica": false
     },
     {
@@ -351,7 +351,7 @@
       "tipo": "Posto",
       "referencia_territorial": "Velas",
       "feriado_2026": "2026-04-23",
-      "feriado_descricao": "23 abril",
+      "feriado_descricao": "Feriado Municipal das Velas",
       "revisao_especifica": false
     },
     {
@@ -360,7 +360,7 @@
       "tipo": "Alfândega",
       "referencia_territorial": "Viana do Castelo",
       "feriado_2026": "2026-08-20",
-      "feriado_descricao": "20 agosto",
+      "feriado_descricao": "Feriado Municipal de Viana do Castelo",
       "revisao_especifica": true
     },
     {
@@ -369,16 +369,16 @@
       "tipo": "Delegação",
       "referencia_territorial": "Almeida",
       "feriado_2026": "2026-07-02",
-      "feriado_descricao": "2 julho",
+      "feriado_descricao": "Feriado Municipal de Almeida",
       "revisao_especifica": false
     },
     {
-      "codigo": "PT99999",
-      "estancia": "Zona Franca de Teste",
+      "codigo": "PT888888",
+      "estancia": "Zona Franca de VM",
       "tipo": "Delegação",
-      "referencia_territorial": "Teste",
-      "feriado_2026": "2026-08-12",
-      "feriado_descricao": "TESTE",
+      "referencia_territorial": "Machico",
+      "feriado_2026": "2026-08-14",
+      "feriado_descricao": "Feriado Municipal de Machico",
       "revisao_especifica": true
     },
     {
@@ -387,11 +387,11 @@
       "tipo": "Delegação",
       "referencia_territorial": "Machico",
       "feriado_2026": "2026-05-08",
-      "feriado_descricao": "8 maio",
+      "feriado_descricao": "Feriado Municipal de Machico",
       "revisao_especifica": true
     }
   ],
-  "versao": "2026-08-10 - revisão atualizada",
+  "versao": "2026-08-12 - descrições dos feriados municipais atualizadas",
   "notas_validacao": [
     "PT000020 — Aeroporto do Porto: mantida a referência Maia; feriado municipal em 13 de julho de 2026.",
     "PT000455 — Peniche: corrigido para 3 de agosto de 2026; regra: segunda-feira seguinte ao primeiro domingo de agosto.",
