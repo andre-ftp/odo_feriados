@@ -2,28 +2,33 @@ name: Send Email Notification
 
 on:
   schedule:
-    # Executa todas as horas, ao minuto 0 (ex: 10:00, 11:00, ...)
-    - cron: '0 * * * *'
-  workflow_dispatch:  # Permite execução manual
+    # Executa de 15 em 15 minutos,
+    # aos minutos 07, 22, 37 e 52 de cada hora,
+    # usando a hora de Portugal Continental.
+    - cron: '7,22,37,52 * * * *'
+      timezone: 'Europe/Lisbon'
+
+  # Permite execução manual a partir do GitHub Actions
+  workflow_dispatch:
 
 jobs:
   send-email:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
-      
+
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
           python-version: '3.11'
-      
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-      
+
       - name: Send email
         env:
           SMTP_SERVER: ${{ secrets.SMTP_SERVER }}
