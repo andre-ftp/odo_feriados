@@ -2,10 +2,8 @@ name: Send Email Notification
 
 on:
   schedule:
-    # Executa de 15 em 15 minutos,
-    # aos minutos 07, 22, 37 e 52 de cada hora,
-    # usando a hora de Portugal Continental.
-    - cron: '7,22,37,52 * * * *'
+    # Executa uma vez por dia, usando a hora de Portugal Continental.
+    - cron: '7 10 * * *'
       timezone: 'Europe/Lisbon'
 
   # Permite execução manual a partir do GitHub Actions

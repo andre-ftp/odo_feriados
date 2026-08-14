@@ -8,13 +8,6 @@ Sistema automático de notificação por email usando **GitHub Actions** e **git
 
 No repositório GitHub, vá a **Settings → Secrets and variables → Actions** e adicione:
 
-```
-SMTP_SERVER      = smtp.ftpweb.dev
-SMTP_PORT        = 587
-SMTP_USER        = odo@ftpweb.dev
-SMTP_PASSWORD    = (sua senha segura)
-RECIPIENTS_API_URL = (opcional)
-```
 
 ### 2. Desenvolvimento Local
 
@@ -64,7 +57,9 @@ odo_feriados/
 ├── main.py                 # Script principal
 ├── json/
 │   ├── feriados_municipais_2026.json
-│   └── feriados_municipais_2027.json
+│   ├── feriados_municipais_2027.json
+│   ├── feriados_nacionais_2026.json
+│   └── feriados_nacionais_2027.json
 ├── requirements.txt        # Dependências Python
 ├── .env.example           # Template de configuração
 ├── .github/
@@ -96,7 +91,9 @@ python main.py
 
 ## 🔄 Agendamento
 
-Atualmente configurado para rodar diariamente às 09:00 UTC.
+Atualmente configurado para rodar diariamente às 09:07, hora de Portugal Continental.
+
+O email é enviado apenas quando o dia atual é o dia útil anterior a um feriado municipal. Sábados, domingos e feriados nacionais são ignorados no cálculo do dia útil anterior.
 
 Para alterar, edite `.github/workflows/send-email.yml` e mude o `cron`:
 

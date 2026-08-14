@@ -2,7 +2,7 @@ import json
 import os
 import smtplib
 import traceback
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from typing import Any, Dict, List, Optional
@@ -29,6 +29,45 @@ def load_holidays_json(year: Optional[int] = None) -> Optional[Dict[str, Any]]:
 
     print(f"Ficheiro de feriados não encontrado em {json_dir}")
     return None
+
+
+def load_national_holidays_json(year: int) -> set[date]:
+    """Carrega as datas dos feriados nacionais do ano indicado."""
+    json_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "json")
+    json_file = os.path.join(json_dir, f"feriados_nacionais_{year}.json")
+
+    if not os.path.exists(json_file):
+        print(f"Ficheiro de feriados nacionais não encontrado: {json_file}")
+        return set()
+
+    try:
+        with open(json_file, "r", encoding="utf-8") as file:
+            holidays_data = json.load(file)
+    except (OSError, json.JSONDecodeError) as error:
+        print(f"Erro ao carregar {json_file}: {error}")
+        return set()
+
+    national_holidays = set()
+    for holiday in holidays_data.get("feriados", []):
+        if not isinstance(holiday, dict):
+            continue
+        try:
+            national_holidays.add(date.fromisoformat(holiday["data"]))
+        except (KeyError, TypeError, ValueError):
+            print(f"Data de feriado nacional inválida em {json_file}: {holiday}")
+
+    return national_holidays
+
+
+def get_previous_business_day(holiday_date: date) -> date:
+    """Retorna o último dia útil antes do feriado indicado."""
+    national_holidays = load_national_holidays_json(holiday_date.year)
+    candidate = holiday_date - timedelta(days=1)
+
+    while candidate.weekday() >= 5 or candidate in national_holidays:
+        candidate -= timedelta(days=1)
+
+    return candidate
 
 
 def format_customs_unit(holiday: Dict[str, Any]) -> str:
@@ -58,37 +97,46 @@ def get_recipients() -> List[str]:
     #return ["andre.rodrigues@ftpporto.com", "joao.danho@odo.pt", "sergio.martins@odo.pt", "rosa.sa@despachante.odo.pt"]
 
 
-def get_next_holidays() -> List[Dict[str, Any]]:
-    """Retorna as estâncias com feriado municipal para amanhã."""
-    tomorrow = datetime.now() + timedelta(days=1)
-    tomorrow_date = tomorrow.strftime("%Y-%m-%d")
-    holiday_key = f"feriado_{tomorrow.year}"
-    holidays_data = load_holidays_json(tomorrow.year)
-    if not holidays_data:
-        return []
+def get_next_holidays(reference_date: Optional[date] = None) -> List[Dict[str, Any]]:
+    """Retorna os feriados municipais cujo dia útil anterior é hoje."""
+    reference_date = reference_date or datetime.now().date()
+    holidays_for_notification: List[Dict[str, Any]] = []
 
-    holidays_tomorrow: List[Dict[str, Any]] = []
-
-    estancias = holidays_data.get("estancias", [])
-    if not isinstance(estancias, list):
-        return []
-
-    for estancia in estancias:
-        if not isinstance(estancia, dict) or estancia.get(holiday_key) != tomorrow_date:
+    # Considera o ano atual e o seguinte para cobrir, por exemplo, 1 de janeiro.
+    for year in (reference_date.year, reference_date.year + 1):
+        holidays_data = load_holidays_json(year)
+        if not holidays_data:
             continue
-        holidays_tomorrow.append(
-            {
-                "codigo": estancia.get("codigo"),
-                "estancia": estancia.get("estancia"),
-                "tipo": estancia.get("tipo"),
-                "referencia_territorial": estancia.get("referencia_territorial"),
-                "date": estancia.get(holiday_key),
-                "name": estancia.get("feriado_descricao"),
-                "revisao_especifica": estancia.get("revisao_especifica", False),
-            }
-        )
 
-    return holidays_tomorrow
+        holiday_key = f"feriado_{year}"
+        estancias = holidays_data.get("estancias", [])
+        if not isinstance(estancias, list):
+            continue
+
+        for estancia in estancias:
+            if not isinstance(estancia, dict) or not estancia.get(holiday_key):
+                continue
+            try:
+                holiday_date = date.fromisoformat(estancia[holiday_key])
+            except (TypeError, ValueError):
+                continue
+
+            if get_previous_business_day(holiday_date) != reference_date:
+                continue
+
+            holidays_for_notification.append(
+                {
+                    "codigo": estancia.get("codigo"),
+                    "estancia": estancia.get("estancia"),
+                    "tipo": estancia.get("tipo"),
+                    "referencia_territorial": estancia.get("referencia_territorial"),
+                    "date": estancia.get(holiday_key),
+                    "name": estancia.get("feriado_descricao"),
+                    "revisao_especifica": estancia.get("revisao_especifica", False),
+                }
+            )
+
+    return holidays_for_notification
 
 
 def send_email(recipients: List[str], holidays: List[Dict[str, Any]]) -> bool:
@@ -107,7 +155,7 @@ def send_email(recipients: List[str], holidays: List[Dict[str, Any]]) -> bool:
         print("Erro: SMTP_PORT deve ser um número.")
         return False
 
-    tomorrow = datetime.now() + timedelta(days=1)
+    holiday_date = date.fromisoformat(holidays[0]["date"])
     weekdays = (
         "segunda-feira",
         "terça-feira",
@@ -131,8 +179,10 @@ def send_email(recipients: List[str], holidays: List[Dict[str, Any]]) -> bool:
         "novembro",
         "dezembro",
     )
-    weekday = weekdays[tomorrow.weekday()]
-    date_formatted = f"{tomorrow.day} de {months[tomorrow.month - 1]} de {tomorrow.year}"
+    weekday = weekdays[holiday_date.weekday()]
+    date_formatted = (
+        f"{holiday_date.day} de {months[holiday_date.month - 1]} de {holiday_date.year}"
+    )
     holiday_name = holidays[0].get("name") or "Feriado Municipal"
     body = (
         f"Informamos os(as) Colegas que na próxima {weekday}, {date_formatted}, "
@@ -148,7 +198,7 @@ def send_email(recipients: List[str], holidays: List[Dict[str, Any]]) -> bool:
 
     message = MIMEMultipart()
     message["From"] = smtp_user
-    message["To"] = ", ".join(recipients)
+    message["To"] = "Destinatários não divulgados:;"
     message["Subject"] = f"Aviso de Feriado Municipal - {holiday_name}"
     message.attach(MIMEText(body, "plain", "utf-8"))
 
@@ -160,11 +210,15 @@ def send_email(recipients: List[str], holidays: List[Dict[str, Any]]) -> bool:
             server.starttls()
         with server:
             server.login(smtp_user, smtp_password)
-            refused = server.sendmail(smtp_user, recipients, message.as_string())
+            refused_recipients = server.sendmail(
+                smtp_user, recipients, message.as_string()
+            )
 
-        refused_recipients = set(refused)
+        refused_recipients = dict(refused_recipients)
         accepted_recipients = [
-            recipient for recipient in recipients if recipient not in refused_recipients
+            recipient
+            for recipient in recipients
+            if recipient not in refused_recipients
         ]
 
         if accepted_recipients:
@@ -172,9 +226,9 @@ def send_email(recipients: List[str], holidays: List[Dict[str, Any]]) -> bool:
                 "Destinatários aceites pelo servidor SMTP: "
                 + ", ".join(accepted_recipients)
             )
-        if refused:
+        if refused_recipients:
             print("Destinatários recusados pelo servidor SMTP:")
-            for recipient, error in refused.items():
+            for recipient, error in refused_recipients.items():
                 print(f"  - {recipient}: {error}")
             return False
 
@@ -203,14 +257,14 @@ def group_holidays_by_name(
 
 
 def main() -> int:
-    print("Verificando feriados para amanhã...")
+    print("Verificando feriados cujo dia útil anterior é hoje...")
     holidays = get_next_holidays()
 
     if not holidays:
-        print("Nenhum feriado municipal amanhã. Email não será enviado.")
+        print("Nenhum feriado municipal elegível para notificação hoje. Email não será enviado.")
         return 0
 
-    print(f"{len(holidays)} feriado(s) encontrado(s) para amanhã:")
+    print(f"{len(holidays)} feriado(s) encontrado(s) para notificação:")
     for holiday in holidays:
         print(
             f"  - {holiday.get('name')} em {holiday.get('estancia')} "

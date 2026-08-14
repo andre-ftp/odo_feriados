@@ -1,0 +1,72 @@
+{
+  "pais": "Portugal",
+  "ano": 2027,
+  "ambito": "feriados_nacionais_obrigatorios",
+  "feriados": [
+    {
+      "data": "2027-01-01",
+      "nome": "Ano Novo",
+      "dia_semana": "sexta-feira"
+    },
+    {
+      "data": "2027-03-26",
+      "nome": "Sexta-Feira Santa",
+      "dia_semana": "sexta-feira"
+    },
+    {
+      "data": "2027-03-28",
+      "nome": "Domingo de Páscoa",
+      "dia_semana": "domingo"
+    },
+    {
+      "data": "2027-04-25",
+      "nome": "Dia da Liberdade",
+      "dia_semana": "domingo"
+    },
+    {
+      "data": "2027-05-01",
+      "nome": "Dia do Trabalhador",
+      "dia_semana": "sábado"
+    },
+    {
+      "data": "2027-05-27",
+      "nome": "Corpo de Deus",
+      "dia_semana": "quinta-feira"
+    },
+    {
+      "data": "2027-06-10",
+      "nome": "Dia de Portugal, de Camões e das Comunidades Portuguesas",
+      "dia_semana": "quinta-feira"
+    },
+    {
+      "data": "2027-08-15",
+      "nome": "Assunção de Nossa Senhora",
+      "dia_semana": "domingo"
+    },
+    {
+      "data": "2027-10-05",
+      "nome": "Implantação da República",
+      "dia_semana": "terça-feira"
+    },
+    {
+      "data": "2027-11-01",
+      "nome": "Dia de Todos os Santos",
+      "dia_semana": "segunda-feira"
+    },
+    {
+      "data": "2027-12-01",
+      "nome": "Restauração da Independência",
+      "dia_semana": "quarta-feira"
+    },
+    {
+      "data": "2027-12-08",
+      "nome": "Imaculada Conceição",
+      "dia_semana": "quarta-feira"
+    },
+    {
+      "data": "2027-12-25",
+      "nome": "Natal",
+      "dia_semana": "sábado"
+    }
+  ]
+}
