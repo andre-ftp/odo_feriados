@@ -93,8 +93,8 @@ def get_recipients() -> List[str]:
         except (requests.RequestException, ValueError, AttributeError) as error:
             print(f"Erro ao procurar destinatários na API: {error}")
 
-    return ["andre.rodrigues@ftpporto.com", "cruz@dotlink.pt"]
-    #return ["andre.rodrigues@ftpporto.com", "joao.danho@odo.pt", "sergio.martins@odo.pt", "rosa.sa@despachante.odo.pt"]
+    #return ["andre.rodrigues@ftpporto.com", "cruz@dotlink.pt"]
+    return ["andre.rodrigues@ftpporto.com", "joao.danho@odo.pt", "sergio.martins@odo.pt", "rosa.sa@despachante.odo.pt"]
 
 
 def get_next_holidays(reference_date: Optional[date] = None) -> List[Dict[str, Any]]:
