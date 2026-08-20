@@ -5,7 +5,7 @@ import traceback
 from datetime import date, datetime, timedelta
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 
 import requests
 from dotenv import load_dotenv
@@ -60,14 +60,19 @@ def load_national_holidays_json(year: int) -> set[date]:
 
 
 def get_previous_business_day(holiday_date: date) -> date:
-    """Retorna o último dia útil antes do feriado indicado."""
-    national_holidays = load_national_holidays_json(holiday_date.year)
+    """Retorna o último dia útil antes do feriado indicado.
+
+    Verifica feriados nacionais no ano do candidato (candidate.year) em cada
+    iteração, para cobrir casos em que o dia útil anterior pertence ao ano
+    anterior (ex.: 1 de janeiro)."""
     candidate = holiday_date - timedelta(days=1)
 
-    while candidate.weekday() >= 5 or candidate in national_holidays:
+    while True:
+        national_holidays = load_national_holidays_json(candidate.year)
+        # weekday() < 5 => segunda a sexta
+        if candidate.weekday() < 5 and candidate not in national_holidays:
+            return candidate
         candidate -= timedelta(days=1)
-
-    return candidate
 
 
 def format_customs_unit(holiday: Dict[str, Any]) -> str:
@@ -140,7 +145,11 @@ def get_next_holidays(reference_date: Optional[date] = None) -> List[Dict[str, A
 
 
 def send_email(recipients: List[str], holidays: List[Dict[str, Any]]) -> bool:
-    """Envia o email com os detalhes dos feriados encontrados."""
+    """Envia o email com os detalhes dos feriados encontrados.
+
+    Todas as entradas em `holidays` têm de partilhar o mesmo feriado e a mesma
+    data, porque a data do assunto/corpo é lida da primeira entrada.
+    """
     smtp_server = os.getenv("SMTP_SERVER")
     smtp_user = os.getenv("SMTP_USER")
     smtp_password = os.getenv("SMTP_PASSWORD")
@@ -245,14 +254,15 @@ def send_email(recipients: List[str], holidays: List[Dict[str, Any]]) -> bool:
         return False
 
 
-def group_holidays_by_name(
+def group_holidays_by_name_and_date(
     holidays: List[Dict[str, Any]],
-) -> Dict[str, List[Dict[str, Any]]]:
-    """Agrupa as estâncias por feriado, preservando a ordem de ocorrência."""
-    groups: Dict[str, List[Dict[str, Any]]] = {}
+) -> Dict[Tuple[str, str], List[Dict[str, Any]]]:
+    """Agrupa as estâncias por feriado e data, preservando a ordem de ocorrência."""
+    groups: Dict[Tuple[str, str], List[Dict[str, Any]]] = {}
     for holiday in holidays:
         name = holiday.get("name") or "Feriado Municipal"
-        groups.setdefault(name, []).append(holiday)
+        holiday_date = holiday.get("date") or ""
+        groups.setdefault((name, holiday_date), []).append(holiday)
     return groups
 
 
@@ -277,9 +287,9 @@ def main() -> int:
         return 1
 
     success = True
-    holiday_groups = group_holidays_by_name(holidays)
-    for holiday_name, holiday_group in holiday_groups.items():
-        print(f"Enviando email para: {holiday_name}")
+    holiday_groups = group_holidays_by_name_and_date(holidays)
+    for (holiday_name, holiday_date), holiday_group in holiday_groups.items():
+        print(f"Enviando email para: {holiday_name} ({holiday_date})")
         if not send_email(recipients, holiday_group):
             success = False
 

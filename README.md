@@ -1,114 +1,120 @@
-# Odo Feriados - Email Notification System
+# Odo Feriados — Sistema de Notificação por Email
 
-Sistema automático de notificação por email usando **GitHub Actions** e **git secrets**.
+Sistema automático que verifica os feriados municipais associados às estâncias aduaneiras e envia uma notificação por email através do GitHub Actions.
 
-## 🚀 Quick Start
+## Configuração no GitHub
 
-### 1. Configurar GitHub Secrets
+No repositório GitHub, aceda a **Settings → Secrets and variables → Actions** e configure:
 
-No repositório GitHub, vá a **Settings → Secrets and variables → Actions** e adicione:
+| Secret | Tipo | Descrição |
+|---|---|---|
+| `SMTP_SERVER` | string | Nome ou endereço do servidor SMTP. |
+| `SMTP_PORT` | inteiro | Porta SMTP. A porta `465` usa SSL; as restantes usam SMTP com STARTTLS. |
+| `SMTP_USER` | string | Utilizador/endereço de autenticação SMTP. |
+| `SMTP_PASSWORD` | string | Palavra-passe SMTP. |
+| `RECIPIENTS_API_URL` | string | Opcional. URL da API que devolve os destinatários. |
 
+Se `RECIPIENTS_API_URL` não estiver configurado, ou se a consulta à API falhar, o programa usa a lista de destinatários definida no código. Se a API responder com uma lista vazia, não é usado esse fallback e a execução termina sem enviar email.
 
-### 2. Desenvolvimento Local
+## Desenvolvimento local
 
 ```bash
-# Criar virtual environment
+# Criar o ambiente virtual
 python -m venv venv
-source venv/bin/activate  # ou `venv\Scripts\activate` no Windows
+
+# Ativar no Linux/macOS
+source venv/bin/activate
+
+# Ativar no Windows PowerShell
+.\venv\Scripts\Activate.ps1
 
 # Instalar dependências
 pip install -r requirements.txt
 
-# Criar .env local (NÃO commitar!)
-cp .env.example .env
-# Preencher com valores reais
+# Criar a configuração local
+cp .env.example .env       # Linux/macOS
+Copy-Item .env.example .env  # Windows PowerShell
 
-# Testar script
+# Preencher os valores reais no ficheiro .env e executar
 python main.py
 ```
 
-### 3. Executar no GitHub Actions
+O ficheiro `.env` não deve ser commitado.
 
-- **Automático**: Corre diariamente às 09:00 UTC
-- **Manual**: Aceda a **Actions → Send Email Notification → Run workflow**
+## Execução no GitHub Actions
 
-## 🔒 Git Secrets (Opcional)
+O workflow está em [.github/workflows/send-email.yml](.github/workflows/send-email.yml) e pode ser executado de duas formas:
 
-Para evitar commitar credenciais acidentalmente, instale [git-secrets](https://github.com/awslabs/git-secrets):
+- **Agendada:** todos os dias às **10:07**, no fuso horário `Europe/Lisbon`.
+- **Manual:** em **Actions → Send Email Notification → Run workflow**.
 
-```bash
-# Instalar (macOS/Linux)
-brew install git-secrets
+As execuções agendadas usam o commit mais recente da branch predefinida do repositório e podem sofrer algum atraso devido à carga do GitHub Actions.
 
-# Ou Windows: https://github.com/awslabs/git-secrets/releases
+## Regras de notificação
 
-# Configurar para o repositório
-git secrets --install
-git secrets --register-aws  # Deteta padrões de credenciais
+O programa envia emails apenas quando a data atual é o último dia útil anterior a um feriado municipal.
 
-# Testar
-git secrets --scan
+Para determinar o dia útil anterior:
+
+- sábados e domingos são ignorados;
+- feriados nacionais são ignorados;
+- o cálculo pode atravessar a mudança de ano.
+
+Quando existem várias estâncias associadas ao mesmo feriado e à mesma data, são incluídas no mesmo email. Feriados diferentes ou com datas diferentes originam emails separados.
+
+Se não houver nenhum feriado elegível no dia, o programa termina normalmente sem enviar email.
+
+## Dados de feriados
+
+Atualmente estão disponíveis dados para 2026 e 2027:
+
+```text
+json/
+├── feriados_municipais_2026.json
+├── feriados_municipais_2027.json
+├── feriados_nacionais_2026.json
+└── feriados_nacionais_2027.json
 ```
 
-## 📁 Estrutura
+Para que um novo ano seja suportado, é necessário adicionar os respetivos ficheiros de feriados municipais e nacionais com os nomes esperados pelo programa.
 
-```
+## Estrutura do projeto
+
+```text
 odo_feriados/
-├── main.py                 # Script principal
+├── main.py
 ├── json/
-│   ├── feriados_municipais_2026.json
-│   ├── feriados_municipais_2027.json
-│   ├── feriados_nacionais_2026.json
-│   └── feriados_nacionais_2027.json
-├── requirements.txt        # Dependências Python
-├── .env.example           # Template de configuração
+├── requirements.txt
+├── .env.example
 ├── .github/
 │   └── workflows/
-│       └── send-email.yml # GitHub Actions workflow
-└── README.md              # Esta documentação
+│       └── send-email.yml
+└── README.md
 ```
 
-## 📝 Variáveis de Ambiente
+## Variáveis locais de ambiente
 
-| Variável | Tipo | Descrição |
-|----------|------|-----------|
-| `SMTP_SERVER` | string | Servidor SMTP (ex: smtp.ftpweb.dev) |
-| `SMTP_PORT` | int | Porta SMTP (ex: 587) |
-| `SMTP_USER` | string | Utilizador SMTP |
-| `SMTP_PASSWORD` | string | Senha SMTP |
-| `RECIPIENTS_API_URL` | string | (Opcional) URL para obter destinatários |
+Exemplo de configuração no `.env`:
 
-## 🧪 Testes Locais
+```dotenv
+SMTP_SERVER=smtp.exemplo.pt
+SMTP_PORT=465
+SMTP_USER=utilizador@exemplo.pt
+SMTP_PASSWORD=coloque_a_password
 
-```bash
-# Definir variáveis e testar
-export SMTP_SERVER=smtp.ftpweb.dev
-export SMTP_PORT=587
-export SMTP_USER=odo@ftpweb.dev
-export SMTP_PASSWORD=sua_senha
-python main.py
+# Opcional
+# RECIPIENTS_API_URL=https://api.exemplo.pt/v1/emails
 ```
 
-## 🔄 Agendamento
+## Segurança
 
-Atualmente configurado para rodar diariamente às 09:07, hora de Portugal Continental.
+- Nunca commite credenciais SMTP.
+- Use GitHub Secrets nas execuções do GitHub Actions.
+- Mantenha a lista de destinatários e a API devidamente controladas.
+- O `RECIPIENTS_API_URL` deve usar HTTPS quando estiver disponível.
 
-O email é enviado apenas quando o dia atual é o dia útil anterior a um feriado municipal. Sábados, domingos e feriados nacionais são ignorados no cálculo do dia útil anterior.
-
-Para alterar, edite `.github/workflows/send-email.yml` e mude o `cron`:
-
-```yaml
-- cron: '0 9 * * *'  # Formato: minuto hora dia mês dia_semana
-```
-
-Referência: https://crontab.guru
-
-## 📚 Recursos
+## Recursos
 
 - [GitHub Actions Secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions)
+- [Sintaxe de workflows do GitHub Actions](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax)
 - [Git Secrets](https://github.com/awslabs/git-secrets)
-- [Cron Expression Generator](https://crontab.guru)
-
----
-
-**Nota**: Nunca commita credenciais! Use `.env.example` como template e configure secrets no GitHub.
