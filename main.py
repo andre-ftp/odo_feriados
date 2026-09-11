@@ -59,20 +59,29 @@ def load_national_holidays_json(year: int) -> set[date]:
     return national_holidays
 
 
-def get_previous_business_day(holiday_date: date) -> date:
-    """Retorna o último dia útil antes do feriado indicado.
+def get_previous_business_day(holiday_date: date, business_days: int = 3) -> date:
+    """Retorna a data indicada quantidade de dias úteis antes do feriado.
 
     Verifica feriados nacionais no ano do candidato (candidate.year) em cada
     iteração, para cobrir casos em que o dia útil anterior pertence ao ano
     anterior (ex.: 1 de janeiro)."""
-    candidate = holiday_date - timedelta(days=1)
+    if business_days < 1:
+        raise ValueError("business_days deve ser maior ou igual a 1")
 
-    while True:
+    candidate = holiday_date - timedelta(days=1)
+    business_days_found = 0
+
+    while business_days_found < business_days:
         national_holidays = load_national_holidays_json(candidate.year)
         # weekday() < 5 => segunda a sexta
         if candidate.weekday() < 5 and candidate not in national_holidays:
-            return candidate
+            business_days_found += 1
+            if business_days_found == business_days:
+                return candidate
         candidate -= timedelta(days=1)
+
+    # O ciclo termina sempre com o retorno acima.
+    raise RuntimeError("Não foi possível calcular a data útil anterior")
 
 
 def format_customs_unit(holiday: Dict[str, Any]) -> str:
@@ -103,7 +112,7 @@ def get_recipients() -> List[str]:
 
 
 def get_next_holidays(reference_date: Optional[date] = None) -> List[Dict[str, Any]]:
-    """Retorna os feriados municipais cujo dia útil anterior é hoje."""
+    """Retorna os feriados municipais cujo terceiro dia útil anterior é hoje."""
     reference_date = reference_date or datetime.now().date()
     holidays_for_notification: List[Dict[str, Any]] = []
 
@@ -126,7 +135,7 @@ def get_next_holidays(reference_date: Optional[date] = None) -> List[Dict[str, A
             except (TypeError, ValueError):
                 continue
 
-            if get_previous_business_day(holiday_date) != reference_date:
+            if get_previous_business_day(holiday_date, business_days=3) != reference_date:
                 continue
 
             holidays_for_notification.append(
@@ -267,7 +276,7 @@ def group_holidays_by_name_and_date(
 
 
 def main() -> int:
-    print("Verificando feriados cujo dia útil anterior é hoje...")
+    print("Verificando feriados cujo terceiro dia útil anterior é hoje...")
     holidays = get_next_holidays()
 
     if not holidays:
