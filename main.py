@@ -135,7 +135,7 @@ def get_next_holidays(reference_date: Optional[date] = None) -> List[Dict[str, A
             except (TypeError, ValueError):
                 continue
 
-            if get_previous_business_day(holiday_date, business_days=2) != reference_date:
+            if get_previous_business_day(holiday_date, business_days=3) != reference_date:
                 continue
 
             holidays_for_notification.append(
@@ -171,6 +171,14 @@ def send_email(recipients: List[str], holidays: List[Dict[str, Any]]) -> bool:
         smtp_port = int(os.getenv("SMTP_PORT", "587"))
     except ValueError:
         print("Erro: SMTP_PORT deve ser um número.")
+        return False
+
+    try:
+        smtp_timeout = float(os.getenv("SMTP_TIMEOUT", "30"))
+        if smtp_timeout <= 0:
+            raise ValueError
+    except ValueError:
+        print("Erro: SMTP_TIMEOUT deve ser um número positivo.")
         return False
 
     holiday_date = date.fromisoformat(holidays[0]["date"])
@@ -220,17 +228,21 @@ def send_email(recipients: List[str], holidays: List[Dict[str, Any]]) -> bool:
     message["Subject"] = f"Aviso de Feriado Municipal - {holiday_name}"
     message.attach(MIMEText(body, "plain", "utf-8"))
 
+    server = None
     try:
         if smtp_port == 465:
-            server = smtplib.SMTP_SSL(smtp_server, smtp_port)
+            server = smtplib.SMTP_SSL(smtp_server, smtp_port, timeout=smtp_timeout)
         else:
-            server = smtplib.SMTP(smtp_server, smtp_port)
+            server = smtplib.SMTP(smtp_server, smtp_port, timeout=smtp_timeout)
             server.starttls()
-        with server:
-            server.login(smtp_user, smtp_password)
-            refused_recipients = server.sendmail(
-                smtp_user, recipients, message.as_string()
-            )
+        server.login(smtp_user, smtp_password)
+        refused_recipients = server.sendmail(
+            smtp_user, recipients, message.as_string()
+        )
+        # O envio já foi aceite; fecha o socket diretamente para evitar bloqueio
+        # durante o SMTP QUIT de alguns servidores.
+        server.close()
+        server = None
 
         refused_recipients = dict(refused_recipients)
         accepted_recipients = [
@@ -261,6 +273,12 @@ def send_email(recipients: List[str], holidays: List[Dict[str, Any]]) -> bool:
         print(f"Erro ao enviar email: {error}")
         traceback.print_exc()
         return False
+    finally:
+        if server is not None:
+            try:
+                server.close()
+            except OSError:
+                pass
 
 
 def group_holidays_by_name_and_date(
