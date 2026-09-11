@@ -135,7 +135,7 @@ def get_next_holidays(reference_date: Optional[date] = None) -> List[Dict[str, A
             except (TypeError, ValueError):
                 continue
 
-            if get_previous_business_day(holiday_date, business_days=3) != reference_date:
+            if get_previous_business_day(holiday_date, business_days=2) != reference_date:
                 continue
 
             holidays_for_notification.append(
